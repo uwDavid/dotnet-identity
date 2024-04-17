@@ -1,0 +1,75 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = WebApp_UnderTheHood
+build_property.RootNamespace = WebApp_UnderTheHood
+build_property.ProjectDir = /home/purple/0Code/5dotnet/WebApp_Security/WebApp_UnderTheHood/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /home/purple/0Code/5dotnet/WebApp_Security/WebApp_UnderTheHood
+build_property._RazorSourceGeneratorDebug = 
+
+[/home/purple/0Code/5dotnet/WebApp_Security/WebApp_UnderTheHood/Pages/Account/AccessDenied.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWNjb3VudC9BY2Nlc3NEZW5pZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/purple/0Code/5dotnet/WebApp_Security/WebApp_UnderTheHood/Pages/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWNjb3VudC9Mb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/purple/0Code/5dotnet/WebApp_Security/WebApp_UnderTheHood/Pages/Account/Logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWNjb3VudC9Mb2dvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/purple/0Code/5dotnet/WebApp_Security/WebApp_UnderTheHood/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/purple/0Code/5dotnet/WebApp_Security/WebApp_UnderTheHood/Pages/HR.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSFIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/purple/0Code/5dotnet/WebApp_Security/WebApp_UnderTheHood/Pages/HRManager.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSFJNYW5hZ2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/purple/0Code/5dotnet/WebApp_Security/WebApp_UnderTheHood/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/purple/0Code/5dotnet/WebApp_Security/WebApp_UnderTheHood/Pages/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/purple/0Code/5dotnet/WebApp_Security/WebApp_UnderTheHood/Pages/Settings.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2V0dGluZ3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/purple/0Code/5dotnet/WebApp_Security/WebApp_UnderTheHood/Pages/Shared/_LoginStatusPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19Mb2dpblN0YXR1c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/purple/0Code/5dotnet/WebApp_Security/WebApp_UnderTheHood/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/purple/0Code/5dotnet/WebApp_Security/WebApp_UnderTheHood/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/purple/0Code/5dotnet/WebApp_Security/WebApp_UnderTheHood/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/purple/0Code/5dotnet/WebApp_Security/WebApp_UnderTheHood/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-1ndvvay361
