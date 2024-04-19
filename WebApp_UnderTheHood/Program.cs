@@ -9,6 +9,7 @@ builder.Services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth", opt
 {
     // name => must match Auth Scheme
     options.Cookie.Name = "MyCookieAuth";
+    // options.ExpireTimeSpan = TimeSpan.FromHours(2);
     // options.LoginPath = "/Account1/Login";
     // options.AccessDeniedPath = "/Account/Login";
 });
@@ -27,6 +28,10 @@ builder.Services.AddAuthorization(options =>
 });
 
 builder.Services.AddSingleton<IAuthorizationHandler, HRManagerProbationRequirementHandler>();
+builder.Services.AddHttpClient("OurWebAPI", client =>
+{
+    client.BaseAddress = new Uri("http://localhost:6000/");
+});
 
 var app = builder.Build();
 

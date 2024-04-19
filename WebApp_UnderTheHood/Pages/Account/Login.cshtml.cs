@@ -4,6 +4,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using WebApp_UnderTheHood.Authorization;
 
 namespace WebApp_UnderTheHood.Pages.Account
 {
@@ -35,11 +36,19 @@ namespace WebApp_UnderTheHood.Pages.Account
                 var identity = new ClaimsIdentity(claims, "MyCookieAuth");
                 ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
 
+                var authProperties = new AuthenticationProperties
+                {
+                    IsPersistent = Credential.RememberMe
+                };
+
                 // serialize principal into string -> encrypt it -> save as cookie in http context
-                await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal);
+                // await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal);
                 // .SignInAsync() requires an authentication handler <- provided by IAuthenticationService
                 // the handler needs to implement IAuthenticaitonService
                 // we need to inject dependency in program.cs
+
+                // for persistent cookie
+                await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal, authProperties);
 
                 return RedirectToPage("/Index");
             }
@@ -47,13 +56,5 @@ namespace WebApp_UnderTheHood.Pages.Account
         }
     }
 
-    public class Credential
-    {
-        [Required]
-        [Display(Description = "Username")]
-        public string UserName { get; set; } = string.Empty;
-        [Required]
-        [DataType(DataType.Password)]
-        public string Password { get; set; } = string.Empty;
-    }
+
 }

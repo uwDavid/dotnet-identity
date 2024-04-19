@@ -1,0 +1,10 @@
+@Web_API_HostAddress = http://localhost:6000
+
+POST {{Web_API_HostAddress}}/auth
+content-type: application/json
+
+{
+    "username": "admin",
+    "password": "password"
+}
+

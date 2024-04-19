@@ -1,11 +1,23 @@
 {
   "Version": 1,
-  "Hash": "xN7iWKYHrvJyd42h5na6F/Vp+JdS6+UOxLaVg72Xw3s=",
+  "Hash": "gmCUws7aIJM/UoDg2joMFeVsjqW7Rx77DypKFsOSPaY=",
   "Source": "WebApp_UnderTheHood",
   "BasePath": "_content/WebApp_UnderTheHood",
   "Mode": "Default",
   "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "/home/purple/0Code/5dotnet/WebApp_Security/Web_API/Web_API.csproj",
+      "Version": 2,
+      "Source": "Web_API",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
   "DiscoveryPatterns": [
     {
       "Name": "WebApp_UnderTheHood/wwwroot",
