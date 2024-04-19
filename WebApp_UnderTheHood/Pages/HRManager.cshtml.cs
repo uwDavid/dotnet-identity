@@ -22,12 +22,25 @@ public class HRManagerModel : PageModel
 
     public async Task OnGet()
     {
-        var httpClient = httpClientFactory.CreateClient("OurWebAPI");
-        // post request to /auth to get token
-        var res = await httpClient.PostAsJsonAsync("auth", new Authorization.Credential { UserName = "admin", Password = "password" });
-        res.EnsureSuccessStatusCode();
-        string jwt = await res.Content.ReadAsStringAsync();
-        var token = JsonConvert.DeserializeObject<JwtToken>(jwt);  // convert jwt token
+        JwtToken token = new JwtToken();
+        // get token from session 
+        var strTokenObj = HttpContext.Session.GetString("access_token");
+        if (string.IsNullOrEmpty(strTokenObj))
+        {
+            // if we don't have cookie
+            token = await Authenticate();
+        }
+        else
+        {
+            // we have jwt token in session
+            token = JsonConvert.DeserializeObject<JwtToken>(strTokenObj) ?? new JwtToken();
+        }
+        if (token == null
+        || string.IsNullOrWhiteSpace(token.AccessToken)
+        || token.ExpiresAt <= DateTime.UtcNow)
+        {
+            token = await Authenticate();
+        }
 
         // simple HTTP call - pass in DTO type 
         // weatherForecastItems = await httpClient.GetFromJsonAsync<List<WeatherForecastDTO>>("WeatherForecast") ?? new List<WeatherForecastDTO>();
@@ -37,8 +50,23 @@ public class HRManagerModel : PageModel
 
 
         // HTTP call w jwt token to http header
+        var httpClient = httpClientFactory.CreateClient("OurWebAPI");
         httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token?.AccessToken ?? string.Empty);
         weatherForecastItems = await httpClient.GetFromJsonAsync<List<WeatherForecastDTO>>("WeatherForecast") ?? new List<WeatherForecastDTO>();
+    }
+
+    private async Task<JwtToken> Authenticate()
+    {
+        // Log into API + get jwt 
+        var httpClient = httpClientFactory.CreateClient("OurWebAPI");
+        // post request to /auth to get token
+        var res = await httpClient.PostAsJsonAsync("auth", new Authorization.Credential { UserName = "admin", Password = "password" });
+        res.EnsureSuccessStatusCode();
+        string jwt = await res.Content.ReadAsStringAsync();
+        // store token in session
+        HttpContext.Session.SetString("access_token", jwt);
+        var token = JsonConvert.DeserializeObject<JwtToken>(jwt) ?? new JwtToken();  // convert jwt token
+        return token;
     }
 }
 
