@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
+
 using WebApp_UnderTheHood.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);

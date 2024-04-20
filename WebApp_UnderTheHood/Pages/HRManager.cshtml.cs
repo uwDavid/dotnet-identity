@@ -1,8 +1,11 @@
 using System.Net.Http.Headers;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+
 using Newtonsoft.Json;
+
 using WebApp_UnderTheHood.Authorization;
 using WebApp_UnderTheHood.Authorization.DTO;
 
@@ -69,4 +72,3 @@ public class HRManagerModel : PageModel
         return token;
     }
 }
-

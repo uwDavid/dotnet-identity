@@ -1,4 +1,5 @@
 using System.Text;
+
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
@@ -32,6 +33,14 @@ builder.Services.AddAuthentication(options =>
 });
 // if you have multiple Auth Handlers => just chain with .AddJwtBearer("scheme") => then also specify scheme name
 // Auth middleware => loops through all Auth Handlers
+
+// Add custom policy to /weather route
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly",
+        policy => policy.RequireClaim("Admin")
+    );
+});
 
 var app = builder.Build();
 
