@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "gmCUws7aIJM/UoDg2joMFeVsjqW7Rx77DypKFsOSPaY=",
+  "Hash": "Xr4bdtQE4NQVyNv5GnqR/9GmukVILe6RW+uBVQs84oY=",
   "Source": "WebApp_UnderTheHood",
   "BasePath": "_content/WebApp_UnderTheHood",
   "Mode": "Default",
@@ -11,10 +11,10 @@
       "Version": 2,
       "Source": "Web_API",
       "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
-      "AdditionalPublishProperties": "",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
       "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
       "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
-      "AdditionalBuildProperties": "",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
       "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
     }
   ],

@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 using WebApp.Data;
+using WebApp.Data.Account;
+using WebApp.Services;
+using WebApp.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +17,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(DbUrl);
 });
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+builder.Services.AddIdentity<User, IdentityRole>(options =>
 {
     // additional Identity config
     options.Password.RequiredLength = 8;
@@ -25,6 +28,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
 
     options.User.RequireUniqueEmail = true;
+    options.SignIn.RequireConfirmedEmail = true; // user must confirm email
 })
     //specifies that Identity pkg is using ApplicationDbContext
     .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -36,6 +40,12 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.LoginPath = "/Account/Login";
     options.AccessDeniedPath = "/Account/AccessDenied";
 });
+
+builder.Services.Configure<SmtpSetting>(builder.Configuration.GetSection("SMTP"));
+// for any service that requires the SmtpSetting class 
+// builder creates the class on demand + load data from SMTP section
+
+builder.Services.AddSingleton<IEmailService, EmailService>();
 
 var app = builder.Build();
 

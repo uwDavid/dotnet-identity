@@ -1,0 +1,32 @@
+services:
+  smtp:
+    container_name: smtp
+    image: mailhog/mailhog
+    restart: always
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+  psdb_test:
+    container_name: psdb_test
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=secret
+    ports:
+      - "5432:5432"
+    volumes:
+      - psql_data_test:/var/lib/postgresql/data
+
+  adminer:
+    container_name: adminer
+    image: adminer
+    restart: always
+    ports:
+      - 9000:8080
+    depends_on:
+      - psdb_test
+
+volumes:
+  psql_data_test:

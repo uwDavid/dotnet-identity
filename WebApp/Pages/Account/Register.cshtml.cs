@@ -6,19 +6,25 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Routing;
 
+using WebApp.Data.Account;
+using WebApp.Services;
+
 namespace WebApp.Pages.Account;
 
 public class RegisterModel : PageModel
 {
-    private readonly UserManager<IdentityUser> userManager;
+    private readonly UserManager<User> _userManager;
+    private readonly IEmailService _emailService;
 
-    public RegisterModel(UserManager<IdentityUser> userManager)
+    public RegisterModel(UserManager<User> userManager, IEmailService emailService)
     {
-        this.userManager = userManager;
+        _userManager = userManager;
+        _emailService = emailService;
     }
 
     [BindProperty]
     public RegisterViewModel RegisterViewModel { get; set; } = new RegisterViewModel();
+
 
 
     public void OnGet()
@@ -32,24 +38,32 @@ public class RegisterModel : PageModel
         // Validate Email Address (optoinal - b/c it's in configurations)
 
         // Create User 
-        var user = new IdentityUser
+        var user = new User
         {
             Email = RegisterViewModel.Email,
-            UserName = RegisterViewModel.Email
+            UserName = RegisterViewModel.Email,
+            Department = RegisterViewModel.Department,
+            Position = RegisterViewModel.Position
         };
         // Use UserManager to store user in DB
-        var result = await userManager.CreateAsync(user, RegisterViewModel.Password);
+        var result = await _userManager.CreateAsync(user, RegisterViewModel.Password);
         if (result.Succeeded)
         {
             // generate token 
-            var confirmToken = await userManager.GenerateEmailConfirmationTokenAsync(user);
-            Console.WriteLine($"token: {confirmToken}");
+            var confirmToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            // return Redirect(Url.PageLink(pageName: "/Account/ConfirmEmail",
+            //     values: new { userId = user.Id, token = confirmToken }) ?? "");
 
             var confirmLink = Url.PageLink("/Account/ConfirmEmail",
                 values: new { userId = user.Id, token = confirmToken });
-
             Console.WriteLine($"link: {confirmLink}");
 
+            await _emailService.SendAsync("fromTest@example.com",
+                user.Email,
+                "Account Confirmation",
+                $"Linked to confirm email: {confirmLink}");
+
+            /* refactored to email service
             // email message
             var message = new MailMessage("fromTest@example.com",
                 user.Email,
@@ -63,6 +77,7 @@ public class RegisterModel : PageModel
                 // emailClient.Crednetials = new NetworkCredential(email, password);
                 await emailClient.SendMailAsync(message);
             }
+            */
 
             return RedirectToPage("/Account/Login");
         }
@@ -85,4 +100,8 @@ public class RegisterViewModel
     [Required]
     [DataType(dataType: DataType.Password)]
     public string Password { get; set; } = string.Empty;
+    [Required]
+    public string Department { get; set; } = string.Empty;
+    [Required]
+    public string Position { get; set; } = string.Empty;
 }
