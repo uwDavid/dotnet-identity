@@ -1,8 +1,10 @@
 using System.ComponentModel.DataAnnotations;
+using System.Net.Mail;
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace WebApp.Pages.Account;
 
@@ -39,6 +41,29 @@ public class RegisterModel : PageModel
         var result = await userManager.CreateAsync(user, RegisterViewModel.Password);
         if (result.Succeeded)
         {
+            // generate token 
+            var confirmToken = await userManager.GenerateEmailConfirmationTokenAsync(user);
+            Console.WriteLine($"token: {confirmToken}");
+
+            var confirmLink = Url.PageLink("/Account/ConfirmEmail",
+                values: new { userId = user.Id, token = confirmToken });
+
+            Console.WriteLine($"link: {confirmLink}");
+
+            // email message
+            var message = new MailMessage("fromTest@example.com",
+                user.Email,
+                "Email Confirmation", // subject
+                $"Link to confirm email: {confirmLink}" // body
+            );
+
+            // email client + send email
+            using (var emailClient = new SmtpClient(host: "localhost", port: 1025))
+            {
+                // emailClient.Crednetials = new NetworkCredential(email, password);
+                await emailClient.SendMailAsync(message);
+            }
+
             return RedirectToPage("/Account/Login");
         }
         else
